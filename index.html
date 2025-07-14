@@ -1,0 +1,613 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/microsoft-avant" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Moto Giro</title>
+    <link rel="icon" type="image/png" href="img/moto_giro.png">
+    <style>
+        /*Estilos generales y fuente*/
+        body {
+            font-family: 'Microsoft Avant', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        /* Sección de bienvenida */
+        .container-info {
+            position: relative;
+            width: 100%;
+            height: 90.2vh;
+            background: url('img/info-mg.jpg') no-repeat center center/cover;
+        }
+
+        .info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        .info h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .info p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        /*Sección de productos destacados */
+        .productos-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #F5DCB8;
+        }
+
+        .productos-lista {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .producto {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            padding: 20px;
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #eee;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .producto:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.20);
+        }
+
+        .producto img {
+            width: 80%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .articulo {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: #F4901F;
+        }
+
+        .precio {
+            font-size: 1.2rem;
+            color: #F4901F;
+        }
+
+        /* Botón de comprar */
+        .btn-comprar {
+            font-family: 'Microsoft Avant', sans-serif;
+            background-color: #F4901F;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, border 0.2s;
+        }
+
+        .btn-comprar:hover {
+            background-color: #fff;
+            color: #F4901F;
+            border: 1px solid #F4901F;
+        }
+        /* Sección de categorías principales*/
+        .categorias-section {
+            background: #fff;
+            padding: 40px 0;
+        }
+
+        .categorias-lista {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .categoria {
+            background: #F5DCB8;
+            border-radius: 10px;
+            padding: 30px 40px;
+            text-align: center;
+            min-width: 180px;
+            transition: box-shadow 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .categoria:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transform: translateY(-6px) scale(1.03);
+        }
+
+        .categoria img {
+            width: 45%;
+            margin-bottom: 10px;
+            border-radius: 15px;
+        }
+
+        .categoria h3 {
+            color: #F4901F;
+            margin-bottom: 10px;
+        }
+
+        .categoria .btn-comprar {
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /*  Sección de testimonios de clientes*/
+        .testimonios-section {
+            background: #F4901F;
+            padding: 40px 0;
+        }
+
+        .testimonios-lista {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .testimonio {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 320px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .testimonio p {
+            font-style: italic;
+            color: #333;
+        }
+
+        .testimonio .cliente {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .testimonio .cliente img {
+            width: 40px;
+            border-radius: 50%;
+        }
+
+        .testimonio .cliente span {
+            font-weight: bold;
+            color: #F4901F;
+        }
+
+        /* Header y navegación principal */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #F4901F;
+            min-height: 70px;
+        }
+
+        header img {
+            height: 60px;
+            margin-left: 20px;
+        }
+
+        header nav {
+            flex: 1;
+            text-align: right;
+            display: flex;           /* Nuevo: hace que nav y ul estén en línea */
+            align-items: center;     /* Centra verticalmente */
+            justify-content: flex-end;
+        }
+
+        header ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #FFFFFF;
+            transition: background 0.2s, color 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 2px;
+            width: 100%;
+            height: 2px;
+            background: #F4901F;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            transform-origin: left;
+        }
+
+        header a:hover {
+            color: #F4901F;
+            background-color: #FFFFFF;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        header a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Títulos generales*/
+        h2 {
+            color: #F4901F;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Menú desplegable para Catálogo */
+        .submenu {
+            position: relative;
+        }
+        .submenu ul {
+            display: none;
+            position: absolute;
+            background: #fff;
+            min-width: 180px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 0 0 8px 8px;
+            z-index: 100;
+            margin-top: 5px;
+            padding: 0;
+            list-style: none;
+            text-align: left; /*Esto alinea el texto a la izquierda */
+            left: 0; /* Asegura que el submenú salga alineado al borde izquierdo */
+        }
+        .submenu:hover ul {
+            display: block;
+        }
+        .submenu ul li a {
+            color: #F4901F;
+            padding: 12px 18px;
+            display: block;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            border-radius: 0;
+            transition: background 0.2s;
+            text-align: left; /* <-- Esto también ayuda a alinear el texto */
+        }
+        .submenu ul li:last-child a {
+            border-bottom: none;
+        }
+        .submenu ul li a:hover {
+            background: #F4901F;
+            color: #fff;
+        }
+
+        /* Responsive nav para celulares */
+        @media (max-width: 800px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 10px;
+    }
+    header img {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+    header nav {
+        width: 100%;
+        text-align: left;
+        display: block; /* Vuelve a bloque en móvil */
+    }
+    header ul {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        padding: 0;
+    }
+    header ul li {
+        width: 100%;
+        margin: 0;
+    }
+    header a {
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+        border-radius: 0;
+        text-align: left;
+    }
+    header a:hover {
+        padding: 8px 0;
+        border-radius: 0;
+    }
+    .submenu ul {
+        position: static;
+        min-width: 100%;
+        box-shadow: none;
+        border-radius: 0 0 8px 8px;
+        margin-top: 0;
+    }
+}
+
+/* Opcional: mejora el toque en submenú para móviles */
+@media (max-width: 800px) {
+    .submenu:hover ul,
+    .submenu:focus-within ul {
+        display: block;
+    }
+}
+
+/* Botón hamburguesa para móviles */
+.menu-toggle {
+    display: none;
+    background: #F4901F;
+    border: none;
+    font-size: 2.2rem;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 15px;
+    border-radius: 8px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: background 0.2s, color 0.2s;
+}
+.menu-toggle:active,
+.menu-toggle:focus {
+    background: #fff;
+    color: #F4901F;
+    outline: none;
+}
+
+@media (max-width: 800px) {
+    header {
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 10px;
+        position: relative;
+    }
+    header img {
+        margin-left: 0;
+        margin-bottom: 0;
+    }
+    .menu-toggle {
+        display: block;
+    }
+    header nav {
+        width: auto;
+        text-align: left;
+        display: block;
+        position: absolute;
+        top: 70px;
+        right: 10px;
+        z-index: 100;
+    }
+    header ul {
+        flex-direction: column;
+        gap: 0;
+        width: 220px;
+        padding: 0;
+        background: #F4901F;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        border-radius: 0 0 12px 12px;
+        display: none;
+        animation: fadeInMenu 0.3s;
+    }
+    header ul.active {
+        display: flex;
+    }
+    @keyframes fadeInMenu {
+        from { opacity: 0; transform: translateY(-10px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
+    header ul li {
+        width: 100%;
+        margin: 0;
+    }
+    header a {
+        display: block;
+        width: 100%;
+        padding: 16px 20px;
+        border-radius: 0;
+        text-align: left;
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: background 0.2s, color 0.2s;
+    }
+    header a:hover,
+    header a:focus {
+        background: #fff;
+        color: #F4901F;
+    }
+    .submenu ul {
+        position: static;
+        min-width: 100%;
+        box-shadow: none;
+        border-radius: 0 0 8px 8px;
+        margin-top: 0;
+        background: #fff;
+    }
+    .submenu ul li a {
+        color: #F4901F;
+        font-weight: normal;
+        padding: 14px 18px;
+    }
+    .submenu ul li a:hover {
+        background: #F4901F;
+        color: #fff;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div style="flex: 0 0 auto; text-align: left;">
+            <img src="img/moto_giro.png" alt="MotoGiro Logo">
+        </div>
+        <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+        <nav style="flex: 1; text-align: right;">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li class="submenu">
+                    <a href="Catalogo.html">Catálogo</a>
+                    <ul>
+                        <li><a href="Catalogo-aceites.html"><i class="fas fa-oil-can"></i> Aceites</a></li>
+                        <li><a href="Catalogo-cascos.html"><i class="fas fa-helmet-safety"></i> Cascos</a></li>
+                        <li><a href="Catalogo-bujias.html"><i class="fas fa-bolt"></i> Bujias</a></li>
+                        <li><a href="Catalogo-cadenas.html"><i class="fas fa-link"></i> Cadenas</a></li>
+                        <li><a href="Catalogo-camaras.html"><i class="fas fa-circle"></i> Camaras</a></li>
+                        <li><a href="Catalogo-cubiertas.html"><i class="fas fa-dot-circle"></i> Cubiertas</a></li>
+                        <li><a href="Catalogo-zapatas.html"><i class="fas fa-shoe-prints"></i> Zapatas</a></li>
+                    </ul>
+                </li>
+                <li><a href="Información.html">Información y Consejos</a></li>
+                <li><a href="Quienes somos.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container-info">
+        <div class="info">
+            <h1>BIENVENIDOS A MOTO GIRO</h1>
+            <p>Desde hace más de 45 años, tu aliado en cada kilómetro sobre dos ruedas.</p>
+
+        </div>
+    </div>
+    <section class="productos-section">
+        <main>
+            <h2>OFERTAS DE LA SEMANA</h2>
+            <section class="productos-lista" id="productos">
+                <article class="producto" data-nombre="Moto Giro" data-precio="100000">
+                    <img src="img/pastillabra.webp" alt="pastillabra">
+                    <h3 class="articulo">Pastilla delantero <br>honda invicta/fushion</h3>
+                    <p class="precio">Gs. 28.000</p>
+                </article>
+                <article class="producto" data-nombre="Moto Giro 2" data-precio="120000">
+                    <img src="img/aceite40.webp" alt="aceite40">
+                    <h3 class="articulo">Aceite Extron <br> <br>20W50</h3>
+                    <p class="precio">Gs. 18.500</p>
+                </article>
+                <article class="producto" data-nombre="Moto Giro 3" data-precio="150000">
+                    <img src="img/llantasgtr.webp" alt="Moto Giro 3">
+                    <h3 class="articulo">Par de Llantas <br>GTR 150/200 <br>2020</h3>
+                    <p class="precio">Gs. 700.000</p>
+                </article>
+                 <article class="producto" data-nombre="Moto Giro 3" data-precio="150000">
+                    <img src="img/cadena did.webp" alt="Moto Giro 3">
+                    <h3 class="articulo">Cadena DID <br><br>428H 102L</h3>
+                    <p class="precio">40.000</p>
+                </article>
+            </section>
+        </main>
+    </section>
+    <section class="categorias-section">
+        <h2 class="title-offers">Categorías principales</h2>
+        <div class="categorias-lista">
+            <div class="categoria">
+                <img src="img/repuestos.png" alt="Repuestos">
+                <h3>Repuestos</h3>
+                <a href="Repuestos.html" class="btn-comprar" style="margin-top: 10px; display: inline-block;">Ver más</a>
+            </div>
+            <div class="categoria">
+                <img src="img/accesorios.png" alt="Accesorios">
+                <h3>Accesorios</h3>
+                <a href="accesorios.html" class="btn-comprar" style="margin-top: 10px; display: inline-block;">Ver más</a>
+            </div>
+            <div class="categoria">
+                <img src="img/nuevos.png" alt="Nuevos Productos">
+                <h3>Nuevos productos</h3>
+                <a href="nuevos.html" class="btn-comprar" style="margin-top: 10px; display: inline-block;">Ver más</a>
+            </div>
+        </div>
+    </section>
+    <section class="testimonios-section">
+        <h2 class="title-offers" style="color: #fff;">Testimonios de clientes</h2>
+        <div class="testimonios-lista">
+            <div class="testimonio">
+                <p>"Excelente atención.Tienen mucho conocimiento de los repuestos. 👌👌"</p>
+                <div class="cliente">
+                    <img src="img/felix ibarra.png" alt="Cliente 1">
+                    <span>Felix Ibarra.</span>
+                </div>
+            </div>
+            <div class="testimonio">
+                <p>"Excelente atención. Precios justos...felicidades y sigan así..."</p>
+                <div class="cliente">
+                    <img src="img/marcelo roman.png" alt="Cliente 2">
+                    <span>Marcelo Roman.</span>
+                </div>
+            </div>
+            <div class="testimonio">
+                <p>"Buenos precios ,variedad en repuestos !!"</p>
+                <div class="cliente">
+                    <img src="img/Héctor Medina.png" alt="Cliente 3">
+                    <span>Héctor Medina.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer style="text-align: center;">
+    <p>&copy; 2025 Moto Giro. Todos los derechos reservados.</p>
+</footer>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/68719416448147190c19d751/1ivtqkunh';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+<script>
+        // Mostrar/ocultar menú en móviles
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('header nav ul');
+            toggle.addEventListener('click', function() {
+                menu.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
