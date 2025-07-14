@@ -234,6 +234,107 @@
             justify-content: flex-end;
             padding: 30px 40px 30px 0;
         }
+
+        .menu-toggle {
+            display: none;
+            background: #F4901F;
+            border: none;
+            font-size: 2.2rem;
+            color: #fff;
+            cursor: pointer;
+            margin-left: 15px;
+            border-radius: 8px;
+            padding: 6px 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            transition: background 0.2s, color 0.2s;
+        }
+        .menu-toggle:active,
+        .menu-toggle:focus {
+            background: #fff;
+            color: #F4901F;
+            outline: none;
+        }
+
+        @media (max-width: 800px) {
+            header {
+                flex-direction: row;
+                align-items: center;
+                padding: 10px 10px;
+                position: relative;
+            }
+            header img {
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            header nav {
+                width: auto;
+                text-align: left;
+                display: block;
+                position: absolute;
+                top: 70px;
+                right: 10px;
+                z-index: 100;
+            }
+            header ul {
+                flex-direction: column;
+                gap: 0;
+                width: 220px;
+                padding: 0;
+                background: #F4901F;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+                border-radius: 0 0 12px 12px;
+                display: none;
+                animation: fadeInMenu 0.3s;
+            }
+            header ul.active {
+                display: flex;
+            }
+            @keyframes fadeInMenu {
+                from { opacity: 0; transform: translateY(-10px);}
+                to { opacity: 1; transform: translateY(0);}
+            }
+            header ul li {
+                width: 100%;
+                margin: 0;
+            }
+            header a {
+                display: block;
+                width: 100%;
+                padding: 16px 20px;
+                border-radius: 0;
+                text-align: left;
+                color: #fff;
+                font-size: 1.1rem;
+                font-weight: bold;
+                letter-spacing: 1px;
+                transition: background 0.2s, color 0.2s;
+            }
+            header a:hover,
+            header a:focus {
+                background: #fff;
+                color: #F4901F;
+            }
+            .submenu ul {
+                position: static;
+                min-width: 100%;
+                box-shadow: none;
+                border-radius: 0 0 8px 8px;
+                margin-top: 0;
+                background: #fff;
+            }
+            .submenu ul li a {
+                color: #F4901F;
+                font-weight: normal;
+                padding: 14px 18px;
+            }
+            .submenu ul li a:hover {
+                background: #F4901F;
+                color: #fff;
+            }
+        }
     </style>
 </head>
  <header>
@@ -325,5 +426,27 @@
             <i class="fa-brands fa-whatsapp"></i>Realizar compra
         </a>
     </div>
+     <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/68719416448147190c19d751/1ivtqkunh';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('header nav ul');
+    toggle.addEventListener('click', function() {
+        menu.classList.toggle('active');
+    });
+});
+</script>
 </body>
 </html>
