@@ -1,0 +1,423 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/microsoft-avant" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Catalogo-Zapatas Moto Giro</title>
+    <link rel="icon" type="image/png" href="img/moto_giro.png">
+    <style>
+        /*Estilos generales y fuente*/
+        body {
+            font-family: 'Microsoft Avant', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #F5DCB8;
+        }
+
+        /* Header y navegación principal*/
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #F4901F;
+            min-height: 70px;
+        }
+
+        header img {
+            height: 60px;
+            margin-left: 20px;
+        }
+
+        header nav {
+            flex: 1;
+            text-align: right;
+        }
+
+        header ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-family: 'Microsoft Avant', sans-serif;
+            position: relative;
+            transition: background 0.2s, color 0.2s, padding 0.2s, border-radius 0.2s;
+            overflow: hidden;
+        }
+
+        header a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 2px;
+            width: 100%;
+            height: 2px;
+            background: #F4901F;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            transform-origin: left;
+        }
+
+        header a:hover {
+            color: #F4901F;
+            background-color: #FFFFFF;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        header a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Menú desplegable para Catálogo */
+        .submenu {
+            position: relative;
+        }
+        .submenu ul {
+            display: none;
+            position: absolute;
+            background: #fff;
+            min-width: 180px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 0 0 8px 8px;
+            z-index: 100;
+            margin-top: 0;
+            padding: 0;
+            list-style: none;
+            text-align: left;
+            left: 0;
+            top: 100%;
+        }
+        .submenu:hover ul {
+            display: block;
+        }
+        .submenu ul li a {
+            color: #F4901F;
+            padding: 12px 18px;
+            display: block;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            border-radius: 0;
+            transition: background 0.2s, color 0.2s;
+            text-align: left;
+            position: relative;
+        }
+        .submenu ul li:last-child a {
+            border-bottom: none;
+        }
+        .submenu ul li a:hover {
+            background: #F4901F;
+            color: #fff;
+        }
+
+        /* Títulos generales*/
+        h2 {
+            color: #F4901F;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+         /* Sección de productos destacados */
+        #productos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Tarjeta de producto */
+        .Producto {
+            background: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            padding: 20px;
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #eee;
+            transition: transform 0.2s;
+        }
+
+        /* Efecto hover en producto */
+        .Producto:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.20);
+        }
+
+        /* Imagen del producto */
+        .Producto img {
+            width: 80%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        /* Título principal */
+        .titulo {
+            font-family: 'Microsoft Avant', sans-serif;
+            font-size: 2rem;
+            color: #F4901F;
+            text-align: center;
+        }
+
+        /* Precio del producto */
+        .precio {
+            font-family: 'Microsoft Avant', sans-serif;
+            font-size: 1.2rem;
+            color: #F4901F;
+        }
+
+        /* Nombre del artículo */
+        .articulo {
+            font-family: 'Microsoft Avant', sans-serif;
+            font-size: 1.0rem;
+            color: #F4901F;
+        }
+
+        /* Botón de WhatsApp al final a la derecha */
+        .boton-whatsapp {
+            background: #25D366;
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(37,211,102,0.18);
+            transition: background 0.2s, color 0.2s;
+            display: inline-block;
+        }
+        .boton-whatsapp:hover {
+            background: #128C7E;
+            color: #fff;
+        }
+        .boton-whatsapp i {
+            margin-right: 8px;
+        }
+        .contenedor-boton-whatsapp {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 30px 40px 30px 0;
+        }
+
+        @media (max-width: 800px) {
+            header {
+                flex-direction: row;
+                align-items: center;
+                padding: 10px 10px;
+                position: relative;
+            }
+            header img {
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            .menu-toggle {
+                display: block;
+                background: #F4901F;
+                border: none;
+                font-size: 2.2rem;
+                color: #fff;
+                cursor: pointer;
+                margin-left: 15px;
+                border-radius: 8px;
+                padding: 6px 12px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+                transition: background 0.2s, color 0.2s;
+            }
+            .menu-toggle:active,
+            .menu-toggle:focus {
+                background: #fff;
+                color: #F4901F;
+                outline: none;
+            }
+            header nav {
+                width: auto;
+                text-align: left;
+                display: block;
+                position: absolute;
+                top: 70px;
+                right: 10px;
+                z-index: 100;
+            }
+            header ul {
+                flex-direction: column;
+                gap: 0;
+                width: 220px;
+                padding: 0;
+                background: #F4901F;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+                border-radius: 0 0 12px 12px;
+                display: none;
+                animation: fadeInMenu 0.3s;
+            }
+            header ul.active {
+                display: flex;
+            }
+            @keyframes fadeInMenu {
+                from { opacity: 0; transform: translateY(-10px);}
+                to { opacity: 1; transform: translateY(0);}
+            }
+            header ul li {
+                width: 100%;
+                margin: 0;
+            }
+            header a {
+                display: block;
+                width: 100%;
+                padding: 16px 20px;
+                border-radius: 0;
+                text-align: left;
+                color: #fff;
+                font-size: 1.1rem;
+                font-weight: bold;
+                letter-spacing: 1px;
+                transition: background 0.2s, color 0.2s;
+            }
+            header a:hover,
+            header a:focus {
+                background: #fff;
+                color: #F4901F;
+            }
+            .submenu ul {
+                position: static;
+                min-width: 100%;
+                box-shadow: none;
+                border-radius: 0 0 8px 8px;
+                margin-top: 0;
+                background: #fff;
+            }
+            .submenu ul li a {
+                color: #F4901F;
+                font-weight: normal;
+                padding: 14px 18px;
+            }
+            .submenu ul li a:hover {
+                background: #F4901F;
+                color: #fff;
+            }
+        }
+    </style>
+</head>
+ <header>
+        <div style="flex: 0 0 auto; text-align: left;">
+            <img src="img/moto_giro.png" alt="MotoGiro Logo">
+        </div>
+        <nav style="flex: 1; text-align: right;">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li class="submenu">
+                    <a href="Catalogo.html">Catálogo</a>
+                    <ul>
+                           <li><a href="Catalogo-aceites.html"><i class="fas fa-oil-can"></i> Aceites</a></li>
+                        <li><a href="Catalogo-cascos.html"><i class="fas fa-helmet-safety"></i> Cascos</a></li>
+                        <li><a href="Catalogo-bujias.html"><i class="fas fa-bolt"></i> Bujias</a></li>
+                        <li><a href="Catalogo-cadenas.html"><i class="fas fa-link"></i> Cadenas</a></li>
+                        <li><a href="Catalogo-camaras.html"><i class="fas fa-circle"></i> Camaras</a></li>
+                        <li><a href="Catalogo-cubiertas.html"><i class="fas fa-dot-circle"></i> Cubiertas</a></li>
+                        <li><a href="Catalogo-zapatas.html"><i class="fas fa-shoe-prints"></i> Zapatas</a></li>
+                </li>
+                <li><a href="Información.html">Información y Consejos</a></li>
+                <li><a href="Quienes somos.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+    <body>
+         <div>
+        <h2 class="titulo">Catalogo Zapatas</h2>
+        <main id="contenido">
+            <section id="productos">
+                <article class="Producto">
+                    <img src="img zapatas/zapata mmg.jpg" alt="zapata mmg">
+                    <h3 class="articulo">JUEGO DE ZAPATAS<br>CG/GL<br>"MMG"</h3>
+                    <p class="precio">Gs. 27.000</p>
+                </article>
+                <article class="Producto">
+                    <img src="img zapatas/zapata mmg.jpg" alt="junta-productos">
+                    <h3 class="articulo">JUEGO DE ZAPATAS<br>GTR/SHARK<br>"MMG"</h3>
+                    <p class="precio">Gs. 32.000</p>
+                </article>
+                <article class="Producto">
+                    <img src="img zapatas/zapata mmg.jpg" alt="zapata mmg">
+                    <h3 class="articulo">JUEGO DE ZAPATAS<br>C100/BIZ125<br>"MMG"</h3>
+                    <p class="precio">Gs. 27.000</p>
+                </article>
+            </section>
+        </main>
+    </div>
+    <div>
+        <main id="contenido">
+            <section id="productos">
+                <article class="Producto">
+                    <img src="img zapatas/zapata aldrich.jpg" alt="zapata aldrich">
+                    <h3 class="articulo">JUEGO DE ZAPATAS<br>CG/GL<br>"ALDRICH"</h3>
+                    <p class="precio">Gs. 22.000</p>
+                </article>
+                <article class="Producto">
+                    <img src="img zapatas/zapata aldrich.jpg" alt="zapata aldrich">
+                    <h3 class="articulo">JUEGO DE ZAPATAS<br>GTR/SHARK<br>"ALDRICH"</h3>
+                    <p class="precio">Gs. 26.500</p>
+                </article>
+                <article class="Producto">
+                    <img src="img zapatas/zapata aldrich.jpg" alt="zapata aldrich">
+                    <h3 class="articulo">JUEGO DE ZAPATAS<br>C100/BIZ125<br>"ALDRICH"</h3>
+                    <p class="precio">Gs. 24.000</p>
+                </article>
+            </section>
+        </main>
+    </div>
+     <div>
+        <main id="contenido">
+            <section id="productos">
+                <article class="Producto">
+                    <img src="img zapatas/zapata metalcromo.jpg" alt="zapata metalcromo">
+                    <h3 class="articulo">JUEGO DE ZAPATAS<br>CG/GL<br>"METALCROMO"</h3>
+                    <p class="precio">Gs. 15.000</p>
+                </article>
+            </section>
+        </main>
+    </div>
+    <div class="contenedor-boton-whatsapp">
+        <a href="https://wa.me/595985240730?text=Hola%2C%20quiero%20realizar%20una%20compra%20de%20zapatas%20Moto%20Giro"
+           target="_blank"
+           class="boton-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>Realizar compra
+        </a>
+    </div>
+     <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/68719416448147190c19d751/1ivtqkunh';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('header nav ul');
+    toggle.addEventListener('click', function() {
+        menu.classList.toggle('active');
+    });
+});
+</script>
+    </body>
+</html>
